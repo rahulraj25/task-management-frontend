@@ -4,7 +4,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap-grid.min.css";
 
 function App() {
-  return <div className="App"></div>;
+  return <div className="App">Welcome to To do management List</div>;
 }
 
 export default App;
