@@ -4,13 +4,16 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./components/layout/Header";
 import Dashboard from "./components/Dashboard";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <Dashboard />
-    </div>
+    <Router>
+      <div className="App">
+        <Header />
+        <Route exact path="/dashboard" component={Dashboard} />
+      </div>
+    </Router>
   );
 }
 
