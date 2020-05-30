@@ -7,17 +7,21 @@ import Dashboard from "./components/Dashboard";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import AddTask from "./components/task/AddTask";
 import UpdateTask from "./components/task/UpdateTask";
+import { Provider } from "react-redux";
+import store from "./store";
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Header />
-        <Route exact path="/dashboard" component={Dashboard} />
-        <Route exact path="/addTask" component={AddTask} />
-        <Route exact path="/updateTask" component={UpdateTask} />
-      </div>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <div className="App">
+          <Header />
+          <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/addTask" component={AddTask} />
+          <Route exact path="/updateTask" component={UpdateTask} />
+        </div>
+      </Router>
+    </Provider>
   );
 }
 
