@@ -1,8 +1,21 @@
 import React, { Component } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
+import axios from "axios";
 
 class AddTask extends Component {
   render() {
+    try {
+      const response = axios.post("http://localhost:8080/todoList/addTask", {
+        taskName: "fill bucket 2",
+        description: "Fill water bucket 2",
+        label: "water",
+        status: "OPEN",
+        dueDate: "2020-06-25",
+      });
+      console.log("👉 Returned data:", response);
+    } catch (e) {
+      console.log(`😱 Axios request failed: ${e}`);
+    }
     return (
       <div className="container">
         <Form>
@@ -89,7 +102,7 @@ class AddTask extends Component {
               </Col>
             </Row>
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" onSubmit="postTask()">
             Submit
           </Button>
         </Form>
