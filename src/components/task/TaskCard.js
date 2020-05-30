@@ -11,7 +11,7 @@ class TaskCard extends Component {
         </div>
         <div className="card-body bg-light">
           <h5 className="card-title">{task.description}</h5>
-          <Link to="/updateTask" className="btn btn-primary">
+          <Link to={`/updateTask/${task.id}`} className="btn btn-primary">
             View / Update
           </Link>
           <button className="btn btn-danger ml-4">Delete</button>

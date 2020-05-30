@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { getTasks } from "../actions/taskAction";
 
 class Dashboard extends Component {
+  //lifecycle hooks
   componentDidMount() {
     this.props.getTasks();
   }
