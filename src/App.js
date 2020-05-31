@@ -18,7 +18,7 @@ function App() {
           <Header />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/addTask" component={AddTask} />
-          <Route exact path="/updateTask" component={UpdateTask} />
+          <Route exact path="/updateTask/:id" component={UpdateTask} />
         </div>
       </Router>
     </Provider>
