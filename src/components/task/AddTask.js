@@ -1,24 +1,70 @@
 import React, { Component } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
-import axios from "axios";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { addTask } from "../../actions/taskAction";
 
 class AddTask extends Component {
+  constructor() {
+    super();
+    this.state = {
+      id: "",
+      taskName: "",
+      description: "",
+      label: "",
+      dueDate: "",
+      createdDate: "",
+      status: "",
+    };
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  //lifecycyle hook to set state
+  componentWillReceiveProps(nextProps) {
+    const {
+      id,
+      taskName,
+      description,
+      label,
+      dueDate,
+      createdDate,
+      status,
+    } = nextProps.task;
+
+    this.setState({
+      id,
+      taskName,
+      description,
+      label,
+      dueDate,
+      createdDate,
+      status,
+    });
+  }
+
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  onSubmit(e) {
+    console.log("Inside on submit ");
+    e.preventDefault();
+    const taskToInsert = {
+      id: this.state.id,
+      taskName: this.state.taskName,
+      description: this.state.description,
+      label: this.state.label,
+      dueDate: this.state.dueDate,
+      status: "TO_DO",
+    };
+    this.props.addTask(taskToInsert, this.props.history);
+  }
+
   render() {
-    try {
-      const response = axios.post("http://localhost:8080/todoList/addTask", {
-        taskName: "fill bucket 2",
-        description: "Fill water bucket 2",
-        label: "water",
-        status: "OPEN",
-        dueDate: "2020-06-25",
-      });
-      console.log("👉 Returned data:", response);
-    } catch (e) {
-      console.log(`😱 Axios request failed: ${e}`);
-    }
     return (
       <div className="container">
-        <Form>
+        <Form onSubmit={this.onSubmit}>
           <Form.Group controlId="formTaskLabel">
             <Row>
               <Col className="col-md-2">
@@ -29,6 +75,9 @@ class AddTask extends Component {
                   type="Text"
                   placeholder="Task Label"
                   className="w-50 p-3"
+                  name="taskName"
+                  value={this.state.taskName}
+                  onChange={this.onChange}
                 />
               </Col>
             </Row>
@@ -46,6 +95,9 @@ class AddTask extends Component {
                   rows="3"
                   placeholder="Task Description"
                   className="w-75"
+                  name="description"
+                  value={this.state.description}
+                  onChange={this.onChange}
                 />
               </Col>
             </Row>
@@ -98,17 +150,27 @@ class AddTask extends Component {
                   type="date"
                   placeholder="Task Label"
                   className="w-25 p-3"
+                  name="dueDate"
+                  value={this.state.dueDate}
+                  onChange={this.onChange}
                 />
               </Col>
             </Row>
           </Form.Group>
-          <Button variant="primary" type="submit" onSubmit="postTask()">
-            Submit
-          </Button>
+          <input type="submit" className="btn btn-primary btn-block mt-4" />
         </Form>
       </div>
     );
   }
 }
 
-export default AddTask;
+AddTask.propTypes = {
+  task: PropTypes.object.isRequired,
+  addTask: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  task: state.task.task,
+});
+
+export default connect(mapStateToProps, { addTask })(AddTask);
