@@ -6,11 +6,11 @@ class TaskCard extends Component {
     const { task } = this.props;
     return (
       <div className="card mb-1 bg-light">
-        <div className="card-header text-primary">
-          Task ID: {task.id} Label: {task.taskName}
-        </div>
+        <div className="card-header text-primary">Task ID: {task.id}</div>
         <div className="card-body bg-light">
-          <h5 className="card-title">{task.description}</h5>
+          <h4 className="card-title">{task.taskName}</h4>
+          <p className="card-text">{task.description}</p>
+          <p className="card-text">Due in _____ Days</p>
           <Link to={`/updateTask/${task.id}`} className="btn btn-primary">
             View / Update
           </Link>
