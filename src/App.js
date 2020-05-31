@@ -9,6 +9,8 @@ import AddTask from "./components/task/AddTask";
 import UpdateTask from "./components/task/UpdateTask";
 import { Provider } from "react-redux";
 import store from "./store";
+import "react-notifications/lib/notifications.css";
+import { NotificationContainer } from "react-notifications";
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/addTask" component={AddTask} />
           <Route exact path="/updateTask/:id" component={UpdateTask} />
+          <NotificationContainer />
         </div>
       </Router>
     </Provider>

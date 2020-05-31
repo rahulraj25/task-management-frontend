@@ -1,6 +1,6 @@
 import axios from "axios";
 import { GET_TASKS, GET_TASK } from "./types";
-
+import { NotificationManager } from "react-notifications";
 export const getTasks = () => async (dispatch) => {
   const res = await axios.get("http://localhost:8080/todoList/getTasks");
   dispatch({
@@ -29,6 +29,7 @@ export const addTask = (task, history) => async (dispatch) => {
       "http://localhost:8080/todoList/addTask",
       task
     );
+    NotificationManager.success("Task Added/Upadted Successfully!");
     history.push("/dashboard");
   } catch (error) {
     console.log("Errror while adding Task");
