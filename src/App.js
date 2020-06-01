@@ -11,6 +11,8 @@ import { Provider } from "react-redux";
 import store from "./store";
 import "react-notifications/lib/notifications.css";
 import { NotificationContainer } from "react-notifications";
+import Login from "./components/user/login";
+import Register from "./components/user/register";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
       <Router>
         <div className="App">
           <Header />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/addTask" component={AddTask} />
           <Route exact path="/updateTask/:id" component={UpdateTask} />
