@@ -13,6 +13,7 @@ import "react-notifications/lib/notifications.css";
 import { NotificationContainer } from "react-notifications";
 import Login from "./components/user/login";
 import Register from "./components/user/register";
+import Profile from "./components/user/profile";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <div className="App">
           <Header />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/profile" component={Profile} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/addTask" component={AddTask} />
