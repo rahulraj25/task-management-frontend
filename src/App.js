@@ -14,8 +14,11 @@ import { NotificationContainer } from "react-notifications";
 import Login from "./components/user/login";
 import Register from "./components/user/register";
 import Profile from "./components/user/profile";
+<<<<<<< HEAD
 import LandingPage from "./components/layout/LandingPage";
 import { createBrowserHistory } from "history";
+=======
+>>>>>>> 8839f6f0dca58832d90b7b553a790033af10e96f
 
 function App() {
   const history = createBrowserHistory();
