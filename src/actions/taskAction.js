@@ -36,26 +36,20 @@ export const addTask = (task, history) => async (dispatch) => {
       task,
       { headers: authHeader() }
     );
-    NotificationManager.success("Task Added/Upadted Successfully!");
     history.push("/dashboard");
   } catch (error) {
     console.log("Errror while adding Task");
   }
 };
 
-export const deleteTask = (id, history) => async (dispatch) => {
-  try {
-    const res = await axios.deleteTask(
-      `http://localhost:8080/todoList/deleteTask/${id}`,
-      { headers: authHeader() }
-    );
-    dispatch({
-      type: DELETE_TASK,
-      payload: res.data,
-    });
-    console.log("Inside Delete Task");
-    NotificationManager.success("Task Deleted Successfully!");
-  } catch (error) {
-    history.push("/dashboard");
-  }
+export const deleteTask = (id) => async (dispatch) => {
+  console.log("Inside Delete Task");
+  await axios.delete(`http://localhost:8080/todoList/deleteTask/${id}`, {
+    headers: authHeader(),
+  });
+  dispatch({
+    type: DELETE_TASK,
+    payload: id,
+  });
+  NotificationManager.success("Task Deleted Successfully!");
 };

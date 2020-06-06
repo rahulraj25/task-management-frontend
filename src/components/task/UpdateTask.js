@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getTask, addTask } from "../../actions/taskAction";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+toast.configure();
 
 class UpdateTask extends Component {
   constructor() {
@@ -69,11 +73,16 @@ class UpdateTask extends Component {
       status: this.state.status,
       priority: this.state.priority,
     };
-    console.log("Date from form in udate task: " + updatedTask.dueDate);
+    console.log("Date from form in update task: " + updatedTask.dueDate);
     this.props.addTask(updatedTask, this.props.history);
+    toast("Task Updated Successfully", {
+      autoClose: 10000,
+      position: toast.POSITION.TOP_CENTER,
+    });
   }
 
   render() {
+    const { dDate } = new Date("MM/DD/YYYY");
     return (
       <div className="container">
         <div className="row">
@@ -110,7 +119,7 @@ class UpdateTask extends Component {
                   type="date"
                   className="form-control form-control-lg"
                   name="dueDate"
-                  value={this.state.dueDate}
+                  value={dDate}
                   onChange={this.onChange}
                 />
               </div>
