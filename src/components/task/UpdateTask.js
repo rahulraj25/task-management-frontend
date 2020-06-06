@@ -15,6 +15,7 @@ class UpdateTask extends Component {
       dueDate: "",
       createdDate: "",
       status: "",
+      priority: "",
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -29,6 +30,7 @@ class UpdateTask extends Component {
       dueDate,
       createdDate,
       status,
+      priority,
     } = nextProps.task;
 
     this.setState({
@@ -39,6 +41,7 @@ class UpdateTask extends Component {
       dueDate,
       createdDate,
       status,
+      priority,
     });
   }
 
@@ -64,7 +67,9 @@ class UpdateTask extends Component {
       dueDate: this.state.dueDate,
       createdDate: this.state.createdDate,
       status: this.state.status,
+      priority: this.state.priority,
     };
+    console.log("Date from form in udate task: " + updatedTask.dueDate);
     this.props.addTask(updatedTask, this.props.history);
   }
 
@@ -112,6 +117,7 @@ class UpdateTask extends Component {
               <div className="form-group">
                 <select
                   className="form-control form-control-lg"
+                  value={this.state.priority}
                   name="priority"
                   onChange={this.onChange}
                 >
