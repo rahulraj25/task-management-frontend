@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_TASKS, GET_TASK } from "./types";
+import { GET_TASKS, GET_TASK, DELETE_TASK } from "./types";
 import { NotificationManager } from "react-notifications";
 import authHeader from "../services/auth-header";
 export const getTasks = () => async (dispatch) => {
@@ -40,5 +40,22 @@ export const addTask = (task, history) => async (dispatch) => {
     history.push("/dashboard");
   } catch (error) {
     console.log("Errror while adding Task");
+  }
+};
+
+export const deleteTask = (id, history) => async (dispatch) => {
+  try {
+    const res = await axios.deleteTask(
+      `http://localhost:8080/todoList/deleteTask/${id}`,
+      { headers: authHeader() }
+    );
+    dispatch({
+      type: DELETE_TASK,
+      payload: res.data,
+    });
+    console.log("Inside Delete Task");
+    NotificationManager.success("Task Deleted Successfully!");
+  } catch (error) {
+    history.push("/dashboard");
   }
 };
