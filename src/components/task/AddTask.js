@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Form, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { addTask } from "../../actions/taskAction";
 
 class AddTask extends Component {
@@ -66,85 +66,60 @@ class AddTask extends Component {
   render() {
     return (
       <div className="container">
-        <Form onSubmit={this.onSubmit}>
-          <Form.Group controlId="formTaskLabel">
-            <Row>
-              <Col className="col-md-2">
-                <Form.Label className="float-right">Task Label</Form.Label>
-              </Col>
-              <Col className="col-md-8">
-                <Form.Control
-                  type="Text"
-                  placeholder="Task Label"
-                  className="w-50 p-3"
+        <div className="row">
+          <div className="col-md-8 m-auto">
+            <Link to="/dashboard" className="btn btn-light">
+              Back to Dash Board
+            </Link>
+            <h4 className="display-4 text-center">Add Task</h4>
+            <hr />
+            <form onSubmit={this.onSubmit}>
+              <div className="form-group">
+                <input
+                  type="text"
+                  className="form-control form-control-lg"
                   name="taskName"
+                  placeholder="Task Name"
                   value={this.state.taskName}
                   onChange={this.onChange}
                 />
-              </Col>
-            </Row>
-          </Form.Group>
-          <Form.Group controlId="formTaskDescription">
-            <Row>
-              <Col className="col-md-2">
-                <Form.Label className="float-right">
-                  Task Description
-                </Form.Label>
-              </Col>
-              <Col className="col-md-8">
-                <Form.Control
-                  as="textarea"
-                  rows="3"
-                  placeholder="Task Description"
-                  className="w-75"
+              </div>
+              <div className="form-group">
+                <input
+                  type="text"
+                  className="form-control form-control-lg"
                   name="description"
+                  placeholder="Task Description"
                   value={this.state.description}
                   onChange={this.onChange}
                 />
-              </Col>
-            </Row>
-          </Form.Group>
-          <Form.Group>
-            <Row>
-              <Col className="col-md-2">
-                <Form.Label className="float-right">Task Label</Form.Label>
-              </Col>
-              <Col>
-                <div className="form-group">
-                  <select
-                    className="form-control form-control-lg"
-                    value={this.state.priority}
-                    name="priority"
-                    onChange={this.onChange}
-                  >
-                    <option value={0}>Select Priority</option>
-                    <option value={1}>High</option>
-                    <option value={2}>Medium</option>
-                    <option value={3}>Low</option>
-                  </select>
-                </div>
-              </Col>
-            </Row>
-          </Form.Group>
-          <Form.Group controlId="formTaskDueDate">
-            <Row>
-              <Col className="col-md-2">
-                <Form.Label className="float-right">Task due date</Form.Label>
-              </Col>
-              <Col className="col-md-8">
-                <Form.Control
+              </div>
+              <h5>Due Date</h5>
+              <div className="form-group">
+                <input
                   type="date"
-                  placeholder="Task Label"
-                  className="w-25 p-3"
+                  className="form-control form-control-lg"
                   name="dueDate"
-                  value={this.state.dueDate}
                   onChange={this.onChange}
                 />
-              </Col>
-            </Row>
-          </Form.Group>
-          <input type="submit" className="btn btn-primary btn-block mt-4" />
-        </Form>
+              </div>
+              <div className="form-group">
+                <select
+                  className="form-control form-control-lg"
+                  value={this.state.priority}
+                  name="priority"
+                  onChange={this.onChange}
+                >
+                  <option value={0}>Select Priority</option>
+                  <option value={1}>High</option>
+                  <option value={2}>Medium</option>
+                  <option value={3}>Low</option>
+                </select>
+              </div>
+              <input type="submit" className="btn btn-primary btn-block mt-4" />
+            </form>
+          </div>
+        </div>
       </div>
     );
   }
