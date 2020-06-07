@@ -76,7 +76,7 @@ class UpdateTask extends Component {
     console.log("Date from form in update task: " + updatedTask.dueDate);
     this.props.addTask(updatedTask, this.props.history);
     toast("Task Updated Successfully", {
-      autoClose: 10000,
+      autoClose: 5000,
       position: toast.POSITION.TOP_CENTER,
     });
   }

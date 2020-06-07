@@ -27,15 +27,22 @@ class TaskCard extends Component {
     const { task } = this.props;
     return (
       <div className="card mb-1 bg-light">
-        <div class="card-header">
+        <div className="closebuttonpanel">
           <button
             type="button"
-            class="close pull-right"
+            class="close pull-right red"
             aria-label="Close"
             onClick={this.onDeleteClick.bind(this, task.id)}
           >
-            <span aria-hidden="true" class="fa fa-times"></span>
+            <h3>
+              <span
+                aria-hidden="true"
+                className="fa fa-times closebuttonspan"
+              ></span>
+            </h3>
           </button>
+        </div>
+        <div class="card-header">
           <h4 className=" text-primary">{task.taskName}</h4>
         </div>
         <div className="card-body bg-light">
