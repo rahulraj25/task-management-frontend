@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 export default class LandingPage extends Component {
   render() {
@@ -9,7 +10,9 @@ export default class LandingPage extends Component {
         <hr />
         <h2>!!! Manage your task efficiently here !!!</h2>
         <br />
-        <h3>******** Check Dashboard for list of tasks **********</h3>
+        <Link to="/dashboard" className="btn btn-primary">
+          Go to your Personalised Task Dashboard
+        </Link>
       </div>
     );
   }

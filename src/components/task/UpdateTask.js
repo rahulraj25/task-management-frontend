@@ -82,7 +82,6 @@ class UpdateTask extends Component {
   }
 
   render() {
-    const { dDate } = new Date("MM/DD/YYYY");
     return (
       <div className="container">
         <div className="row">
@@ -119,7 +118,7 @@ class UpdateTask extends Component {
                   type="date"
                   className="form-control form-control-lg"
                   name="dueDate"
-                  value={dDate}
+                  value={this.state.dueDate}
                   onChange={this.onChange}
                 />
               </div>
