@@ -37,6 +37,21 @@ class TaskCard extends Component {
     const end = moment(this.props.task.dueDate);
     const diff = end.diff(present, "days");
     console.log("Date difference: " + diff);
+    var text = "";
+    const mystyle = {
+      backgroundColor: "white",
+    };
+    if (diff === 0) {
+      text = "Due today";
+      mystyle.backgroundColor = "blue";
+    } else if (diff < 0) {
+      text = "Overdue by " + diff * -1 + " days";
+      mystyle.backgroundColor = "red";
+    } else {
+      text = "Due in " + diff + " days";
+      mystyle.backgroundColor = "green";
+    }
+
     return (
       <div className="card mb-1 bg-light">
         <div className="closebuttonpanel">
@@ -54,12 +69,12 @@ class TaskCard extends Component {
             </h3>
           </button>
         </div>
-        <div class="card-header">
-          <h4 className=" text-primary">{task.taskName}</h4>
+        <div class="card-header" style={mystyle}>
+          <h4 className="text-white">{task.taskName}</h4>
         </div>
         <div className="card-body bg-light">
           <h4 className="card-text">{task.description}</h4>
-          <p className="card-text">Due in {diff} Days</p>
+          <p className="card-text">{text}</p>
         </div>
         <Link to={`/updateTask/${task.id}`} className="btn btn-primary">
           View / Update
